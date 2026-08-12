@@ -23,7 +23,9 @@ Quando si parla di Agents tipicamente i ruoli sono 3:
 
 La prima istruzione da inviare al modello dovrà provenire da "system"
 
-Per tenere la chat viva si definisce un loop che inizia con l'input dell'utente e finisce con la risposta dell'agente
+## While loop
+
+Per tenere la chat viva si definisce un loop che inizia con l'input dell'utente e finisce con la risposta dell'agente. Il ciclo si ripete finche Ollama non smette di eseguire
 
 In modo da permettere all'agente di usare i vari tool, dobbiamo dargli la possibilità anche di fornire gli argomenti adatti per ogni funzione chiamabile.
 
@@ -51,3 +53,6 @@ Di seguito la forma della risposta del modello alla chiamata di ollama.chat
     "done": True
 }
 ```
+
+Viene usato un secondo loop che continua ad eseguire finche l'agente richiede l'utilizzo di tools:
+Dopo la richiesta dell'utente l'agente invia una serie di richieste d'utilizzo dei tool, finche non smette con le richieste il ciclo continua a farlo eseguire.

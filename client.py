@@ -8,14 +8,14 @@ import sys
 import json
 import requests
 
-def _is_ollama_alive():
+def _is_ollama_alive(verbose : bool = False):
     ''''
     Assicurati che ollama sia in esecuzione inviando una richiesta alla porta che espone in locale
     '''
     try:
-        r = requests.get("http://localhost:11434/api/tags", timeout=0.2)
+        r = requests.get("http://localhost:11434/api/tags", timeout=1)
         sc = r.status_code
-        print(f"Ollama in esecuzione (status code = {sc})")
+        if verbose: print(f"Ollama in esecuzione (status code = {sc})")
         return True
     except:
         print("Ollama non risponde in locale...")
@@ -31,7 +31,7 @@ Il primo messaggio dell'elenco è da system che specifica all Agente come affron
 Ogni messaggio sarà un dizionario con chiavi "role" e "content"
 """
 messages = [
-        {"role": "system", "content": "You are a helpful local CLI assistant. You can inspect the system and run tasks using your tools."}
+        {"role": "system", "content": "You are a helpful local CLI assistant. You can inspect the system and run tasks using your tools, use only occidental char"},
     ]
 
 while _is_ollama_alive():
@@ -50,7 +50,6 @@ while _is_ollama_alive():
             messages=messages,
             tools=TOOLS_SCHEMA
         )
-
 
         # Process potential tool calls requested by the model
         while response.get('message', {}).get('tool_calls'):
@@ -73,7 +72,7 @@ while _is_ollama_alive():
                         "content": tool_result
                     })
                 else:
-                    print(f"⚠️ >Unknown tool execution attempted: {tool_name}")
+                    print(f"🔧 >[TOOL ERROR] Unknown tool execution attempted: {tool_name}")
             
             # Re-submit history including tool logs for final evaluation
             response = ollama.chat(
@@ -89,6 +88,6 @@ while _is_ollama_alive():
         messages.append({"role": "assistant", "content": res})
             
 
-    except KeyboardInterrupt:
-        print("\nExiting.")
-        sys.exit(0)
+    except Exception as e:
+        print(f"\n[ERROR]\t{e}")
+        sys.exit(-1)
