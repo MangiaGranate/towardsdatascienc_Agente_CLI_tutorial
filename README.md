@@ -3,8 +3,16 @@
 Si fa riferimento al tutorial https://towardsdatascience.com/cli-agents-with-python-ollama/?utm_source=copilot.com
 Il tutorial ha lo scopo di sviluppare un agente in grado di lanciare comandi shell. Verra spiegatò quali tools definire e come farli chiamare dal nostro file .py
 
+``` txt
+LINUX:
+curl -fsSL https://ollama.com/install.sh | sh
+
+WINDOWS:
+irm https://ollama.com/install.ps1 | iex
+```
+
 modello qwen2.5
-è necessario che il modello sia installato in ollama per eseguire lo script:
+è necessario che il modello sia installato in ollama per eseguire lo script
 ``` txt
 ollama run qwen2.5
 ```
