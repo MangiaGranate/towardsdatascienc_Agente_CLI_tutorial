@@ -3,11 +3,13 @@
 Si fa riferimento al tutorial https://towardsdatascience.com/cli-agents-with-python-ollama/?utm_source=copilot.com
 Il tutorial ha lo scopo di sviluppare un agente in grado di lanciare comandi shell. Verra spiegatò quali tools definire e come farli chiamare dal nostro file .py
 
-``` txt
 LINUX:
+``` shell
 curl -fsSL https://ollama.com/install.sh | sh
+```
 
 WINDOWS:
+``` shell
 irm https://ollama.com/install.ps1 | iex
 ```
 
