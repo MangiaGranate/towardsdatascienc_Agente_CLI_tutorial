@@ -1,3 +1,8 @@
+# PROSSIMAMENTE
+
+- uso di pyttsx3 come sintetizzatore vocale
+
+
 # TOWARDSDATASCIENC - TUTORIAL: agente CLI locale
 
 Si fa riferimento al tutorial https://towardsdatascience.com/cli-agents-with-python-ollama/?utm_source=copilot.com
